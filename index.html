@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Services website created by Vinay Kumar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url(https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg?auto=compress&cs=tinysrgb&w=1600);
+        }
+        
+        header {
+            background-color: #333333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        section {
+            margin: 2rem;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .service-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 1rem;
+            width: 300px;
+            background-color: #fff;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .service-info {
+            padding: 1rem;
+        }
+        
+        .service-info h3 {
+            margin: 0;
+            color: #333;
+        }
+        
+        .service-info p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .service-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 60%;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Home Services Website</h1>
+        <strong>Creater Name:</strong>
+        <p> Name: Vinay Kumar
+            <br> Reg No.: 310521205063 <br> Dept: Informationof Technology
+            <br> Year:3rd
+
+        </p>
+    </header>
+
+    <section id="services">
+        <!-- Service Cards will be dynamically generated here using JavaScript -->
+    </section>
+
+    <div class="service-modal" id="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <script>
+        const services = [{
+            name: 'Plumbing',
+            description: 'We Can Add Here Description',
+            image: 'vinay.png'
+        }, {
+            name: 'Electrical',
+            description: 'We Can Add Here Description',
+            image: 'vinay.png'
+        }, {
+            name: 'Cleaning',
+            description: 'House cleaning services',
+            image: 'vinay.png'
+        }, {
+            name: 'Software services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Training services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Event planning services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Consulting services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Marketing services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Accounting services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Legal services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Human resources services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Translation services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Public relations services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Advertising services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Graphic design services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Web design services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Social media management services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Search engine optimization (SEO) services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Payroll services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Tax preparation services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Data entry services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Data analysis services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Market research services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Customer service and support services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Logistics and supply chain management services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Shipping and fulfillment services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Inventory management services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Facilities management services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Security services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Cleaning services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Landscaping and lawn care services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Construction services',
+            description: '...',
+            image: 'vinay.png'
+        }, {
+            name: 'Home repair and maintenance services',
+            description: '...',
+            image: 'vinay.png'
+        }];
+
+
+        const servicesSection = document.getElementById('services');
+
+        services.forEach(service => {
+            const card = document.createElement('div');
+            card.classList.add('service-card');
+
+            const img = document.createElement('img');
+            img.src = service.image;
+            card.appendChild(img);
+
+            const info = document.createElement('div');
+            info.classList.add('service-info');
+
+            const title = document.createElement('h3');
+            title.textContent = service.name;
+
+            const description = document.createElement('p');
+            description.textContent = service.description;
+
+            info.appendChild(title);
+            info.appendChild(description);
+
+            card.appendChild(info);
+
+            card.addEventListener('click', () => openModal(service));
+
+            servicesSection.appendChild(card);
+        });
+
+        function openModal(service) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+
+            modalTitle.textContent = service.name;
+            modalDescription.textContent = service.description;
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
